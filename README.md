@@ -21,11 +21,7 @@ GA5 README template.
 
 ### 1: Fill in the top of the protocol
 
-<!-- No answer needed here -- we check `protocol.md` directly. -->
-
 ### 2: Markdown formatting
-
-<!-- No answer needed here -- we check the formatting of both Markdown files. -->
 
 ### 3: Create subdirs, and copy the scripts
 
@@ -36,24 +32,22 @@ mkdir -p data/ref scripts results
 
 ### 4: Initialize a Git repository, and commit your first files
 
-<!-- No answer needed here -- we check the repo directly. -->
-
 ### 5: Download the reference transcriptome
-
-<!-- Put the download command in `protocol.md`, not here. -->
 
 Code to count the number of transcripts:
 
 ```bash
 # Your command:
+zcat data/ref/GCF_016801865.2_TS_CPP_V2_rna.fna.gz | grep -c ">"
 ```
 
 The output of the command was:
 
 ```
+28624
 ```
 
-*Answer*: The number of transcripts in the file:
+*Answer*: The number of transcripts in the file: 28,624 
 
 ------------------------------------------------------------------------
 
