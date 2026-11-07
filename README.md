@@ -55,10 +55,16 @@ The output of the command was:
 
 ### 6: Run TrimGalore
 
-<!-- Put the code to run TrimGalore in `protocol.md`, not here. -->
-
 *Answer*: Whether all batch jobs succeeded, and how you checked that
 (and any problems you encountered, and how you solved them):
+
+All batch jobs did succeed. I first used to grep to determine if any jobs did not successfully finish and then I checked the number of HTML files to make sure it was 44. 
+
+```bash
+# My commands
+grep -c "Successfully finished" slurm-trimgalore*.out
+ls results/trim_galore/*html | wc -l
+```
 
 ------------------------------------------------------------------------
 

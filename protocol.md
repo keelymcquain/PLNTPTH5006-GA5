@@ -29,7 +29,8 @@
 
 ```bash
 # Downloaded on <???>
-wget -P data/ref https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/801/865/GCF_016801865.2_TS_CPP_V2/GCF_016801865.2_TS_CPP_V2_rna.fna.gz
+URL=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/801/865/GCF_016801865.2_TS_CPP_V2/GCF_016801865.2_TS_CPP_V2_rna.fna.gz
+wget -P data/ref "$URL"
 ```
 
 ## Set up: Set file paths
@@ -45,7 +46,13 @@ outdir=results
 
 ## Step 1: Read trimming with TrimGalore
 
-<???>
+```bash 
+# Loop to run TrimGalore once per sample
+for fastq_r1 in ../garrigos/fastq/*_R1.fastq.gz; do 
+    fastq_r2="${fastq_r1/_R1/_R2}"
+    sbatch scripts/trimgalore.sh "$fastq_r1" "$fastq_r2" results/trim_galore
+done    
+```
 
 ## Step 2: Creating a transcriptome index with Salmon
 

@@ -28,6 +28,7 @@ echo
 # Create the output dir (with a subdir for Slurm logs)
 mkdir -p "$outdir"/logs
 
+
 # Run TrimGalore
 apptainer exec "$TRIMGALORE_CONTAINER" trim_galore \
     --cores 8 \
