@@ -171,26 +171,33 @@ results/salmon_quant/S86/logs/salmon_quant.log:mapping rate: 83.0532%
 
 ### 12: Update your MultiQC script
 
-<!-- No need to paste the script: we'll look at scripts/multiqc.sh and its Git history directly. -->
-
 ### 13: Run MultiQC
 
 *Answer*: For each program, the number of reports that MultiQC found,
 and why it found this number:
+
+Salmon has 1 report, TrimGalore has 4 reports, and FastQC has 12 reports. 
+
 
 ### 14: The General Statistics table
 
 *Answer*: The sample with the lowest Salmon mapping rate,
 and whether this matches your answer to question 11:
 
+The sample with the lowest mapping rate is S83, which does match my answer to question 11. 
+
 ### 15: Adapter lengths
 
 *Answer*: The most common adapter lengths, whether this surprised you,
 and why you think these lengths are the most common:
 
+The most common adapter lengths are 1-4 bp. This did not surprise me because adapters are several types of short sequences that are added to ends of the DNA fragments.   
+
 ### 16: Ask Claude about the MultiQC report
 
 *Answer*: What you asked, and what you learned from Claude's answer (in your own words):
+
+I asked Claude why are the top overrepresented sequences and why they matter. I learned that if a library has a single sequence making up a large portion of the reads then it usually means that something went wrong, such as adapter contamination. However, the overrepresented sequences in this report did not make up a very large portion of all of the reads. 
 
 ------------------------------------------------------------------------
 
@@ -201,10 +208,23 @@ and why you think these lengths are the most common:
 *Answer*: At least three of Claude's suggestions,
 and whether you agree or disagree with each one, and why:
 
+1. Add a line in protocol.md for each step: "Wait until all Step N jobs show COMPLETED in squeue/sacct before starting Step N+1." This is the single most common beginner mistake (submitting dependent jobs too early).
+
+I agree with this one as I think it makes it more reproducible since each of the subsequent commands rely on the output of the one that comes before it. 
+
+2. Document the sample naming convention once, near the top of protocol.md (e.g., "Samples are named S<number>_R1.fastq.gz / S<number>_R2.fastq.gz"), so the S* glob in Step 3 isn't a mystery.
+
+I agree with this one as it will help others understand what the S was used for in the command, but I could also just remove the "S". 
+
+3. Fix the multiqc.sh usage comment to say sbatch, not bash, matching how it's actually invoked.
+
+I agree with this one since we did add a line to submit it as a batch job. I did not realize that the usage line used bash instead of sbatch.
+
 ### 18: Address a suggestion
 
 *Answer*: Which suggestion(s) you addressed, and what you changed:
 
+I addressed suggestions 2 and 3 because I felt that those were more important for enhancing reproducibility. For suggestion 2, I changed bash to sbatch in the usage line. For suggestion 3, instead of including a sample naming convention, I just removed the "S" from the command code. 
 ------------------------------------------------------------------------
 
 ## Part F: Publish your repo on GitHub

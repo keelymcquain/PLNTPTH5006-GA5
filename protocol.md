@@ -2,7 +2,7 @@
 
 - Author: Keely McQuain
 - Date created: 2026-11-4
-- Date last modified: 2026-11-4
+- Date last modified: 2026-11-8
 - This was run at the Pitzer cluster of the Ohio Supercomputer Center (<https://www.osc.edu>)
 - OSC working dir: /fs/ess/PAS3493/people/mcquain7/GA5
 - GitHub repository: <???>
@@ -28,7 +28,7 @@
 ## Set up: Download the reference transcriptome FASTA file from NCBI
 
 ```bash
-# Downloaded on <???>
+# Downloaded on NCBI FTP
 URL=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/801/865/GCF_016801865.2_TS_CPP_V2/GCF_016801865.2_TS_CPP_V2_rna.fna.gz
 wget -P data/ref "$URL"
 ```
@@ -63,7 +63,7 @@ sbatch scripts/salmon_index.sh data/ref/GCF_016801865.2_TS_CPP_V2_rna.fna.gz res
 ## Step 3: Pseudo-alignment and quantification with Salmon
 
 ```bash
-for R1 in results/trim_galore/S*_R1.fastq.gz; do
+for R1 in results/trim_galore/*_R1.fastq.gz; do
     R2="${R1/_R1/_R2}"
     sbatch scripts/salmon_quant.sh "$R1" "$R2" results/salmon_index/ results/salmon_quant/
 done    
